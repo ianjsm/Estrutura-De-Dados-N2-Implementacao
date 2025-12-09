@@ -1,4 +1,5 @@
 import sys
+import Exercicio01
 import Exercicio02
 import Exercicio03
 import Exercicio04
