@@ -1,49 +1,27 @@
-from Exercicio12 import LinkedQueue
+from Exercicio12 import FilaEncadeada
 
-def separar_listas(original):
-    """
-    Exercício 18: Cria duas listas (Positivos e Negativos) a partir da original.
-    """
-    positivos = LinkedQueue()
-    negativos = LinkedQueue()
+def executar():
+    print("Exercício 18")
+    lista = FilaEncadeada()
+    entrada = input("Números (ex: 10 -5 3): ").split()
+    for x in entrada: lista.inserir(int(x))
     
-    atual = original._head
-    while atual is not None:
-        valor = atual._element
-        
-        if valor >= 0:
-            positivos.enqueue(valor)
-        else:
-            negativos.enqueue(valor)
-            
-        atual = atual._next
-        
-    return positivos, negativos
-
-def imprimir(lista):
-    res = []
-    curr = lista._head
+    pos = FilaEncadeada()
+    neg = FilaEncadeada()
+    
+    curr = lista.cabeca
     while curr:
-        res.append(str(curr._element))
-        curr = curr._next
-    return "[" + ", ".join(res) + "]"
-
-def testar_exercicio_18():
-    print("--- [Exercício 18] Separar Positivos/Negativos ---")
-    lista = LinkedQueue()
-    # Adicionando mix de números: 10, -5, 3, -1, 0
-    lista.enqueue(10)
-    lista.enqueue(-5)
-    lista.enqueue(3)
-    lista.enqueue(-1)
-    lista.enqueue(0)
-    
-    print(f"Original: {imprimir(lista)}")
-    
-    pos, neg = separar_listas(lista)
-    
-    print(f"Positivos: {imprimir(pos)}") # Esperado: [10, 3, 0]
-    print(f"Negativos: {imprimir(neg)}") # Esperado: [-5, -1]
-
-if __name__ == "__main__":
-    testar_exercicio_18()
+        if curr.dado >= 0: pos.inserir(curr.dado)
+        else: neg.inserir(curr.dado)
+        curr = curr.proximo
+        
+    def listar(l):
+        res = []
+        c = l.cabeca
+        while c:
+            res.append(str(c.dado))
+            c = c.proximo
+        return res
+        
+    print(f"Positivos: {listar(pos)}")
+    print(f"Negativos: {listar(neg)}")
