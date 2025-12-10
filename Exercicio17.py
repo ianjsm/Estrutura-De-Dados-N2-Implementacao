@@ -1,23 +1,36 @@
-from Exercicio12 import FilaEncadeada
+from Exercicio12 import LinkedQueue
 
-def reverter(atual, anterior=None, lista=None):
+def reverter_recursivo(atual, anterior=None, lista_obj=None):
     if atual is None:
-        if lista: lista.cabeca = anterior
+        if lista_obj is not None:
+            lista_obj._head = anterior
         return
-    prox_orig = atual.proximo
-    atual.proximo = anterior
-    reverter(prox_orig, atual, lista)
 
-def executar():
-    print("Exercício 17")
-    lista = FilaEncadeada()
-    for x in input("Lista: ").split(): lista.inserir(x)
+    proximo_original = atual._next
     
-    reverter(lista.cabeca, None, lista)
+    atual._next = anterior
     
-    arr = []
-    curr = lista.cabeca
+    reverter_recursivo(proximo_original, atual, lista_obj)
+
+def imprimir_lista(lista):
+    nos = []
+    curr = lista._head
     while curr:
-        arr.append(curr.dado)
-        curr = curr.proximo
-    print(f"Invertida: {arr}")
+        nos.append(str(curr._element))
+        curr = curr._next
+    return " -> ".join(nos)
+
+def testar_exercicio_17():
+    lista = LinkedQueue()
+    lista.enqueue(1)
+    lista.enqueue(2)
+    lista.enqueue(3)
+    
+    print(f"Original: {imprimir_lista(lista)}")
+    
+    reverter_recursivo(lista._head, None, lista)
+    
+    print(f"Revertida: {imprimir_lista(lista)}")
+
+if __name__ == "__main__":
+    testar_exercicio_17()

@@ -1,11 +1,19 @@
-from Exercicio12 import FilaEncadeada
+from Exercicio12 import LinkedQueue
 
-def contar(no):
-    if no is None: return 0
-    return 1 + contar(no.proximo)
+def contar_nos_recursivo(no):
+    if no is None:
+        return 0
+    
+    return 1 + contar_nos_recursivo(no._next)
 
-def executar():
-    print("Exercício 15")
-    lista = FilaEncadeada()
-    for x in input("Lista: ").split(): lista.inserir(x)
-    print(f"Tamanho: {contar(lista.cabeca)}")
+def testar_exercicio_15():
+    lista = LinkedQueue()
+    lista.enqueue("X")
+    lista.enqueue("Y")
+    lista.enqueue("Z")
+    
+    qtd = contar_nos_recursivo(lista._head)
+    print(f"Elementos na lista: {qtd}") 
+
+if __name__ == "__main__":
+    testar_exercicio_15()

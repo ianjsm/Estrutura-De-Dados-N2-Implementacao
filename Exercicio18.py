@@ -1,27 +1,44 @@
-from Exercicio12 import FilaEncadeada
+from Exercicio12 import LinkedQueue
 
-def executar():
-    print("Exercício 18")
-    lista = FilaEncadeada()
-    entrada = input("Números (ex: 10 -5 3): ").split()
-    for x in entrada: lista.inserir(int(x))
+def separar_listas(original):
+    positivos = LinkedQueue()
+    negativos = LinkedQueue()
     
-    pos = FilaEncadeada()
-    neg = FilaEncadeada()
-    
-    curr = lista.cabeca
+    atual = original._head
+    while atual is not None:
+        valor = atual._element
+        
+        if valor >= 0:
+            positivos.enqueue(valor)
+        else:
+            negativos.enqueue(valor)
+            
+        atual = atual._next
+        
+    return positivos, negativos
+
+def imprimir(lista):
+    res = []
+    curr = lista._head
     while curr:
-        if curr.dado >= 0: pos.inserir(curr.dado)
-        else: neg.inserir(curr.dado)
-        curr = curr.proximo
-        
-    def listar(l):
-        res = []
-        c = l.cabeca
-        while c:
-            res.append(str(c.dado))
-            c = c.proximo
-        return res
-        
-    print(f"Positivos: {listar(pos)}")
-    print(f"Negativos: {listar(neg)}")
+        res.append(str(curr._element))
+        curr = curr._next
+    return "[" + ", ".join(res) + "]"
+
+def testar_exercicio_18():
+    lista = LinkedQueue()
+    lista.enqueue(10)
+    lista.enqueue(-5)
+    lista.enqueue(3)
+    lista.enqueue(-1)
+    lista.enqueue(0)
+    
+    print(f"Original: {imprimir(lista)}")
+    
+    pos, neg = separar_listas(lista)
+    
+    print(f"Positivos: {imprimir(pos)}") 
+    print(f"Negativos: {imprimir(neg)}") 
+
+if __name__ == "__main__":
+    testar_exercicio_18()

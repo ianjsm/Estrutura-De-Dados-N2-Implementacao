@@ -1,18 +1,30 @@
-from Exercicio12 import FilaCircular
+from Exercicio12 import CircularQueue
 
 def contar_circular(lista):
-    if lista.vazia(): return 0
-    inicio = lista.cauda.proximo
-    atual = inicio
-    cont = 0
-    while True:
-        cont += 1
-        atual = atual.proximo
-        if atual is inicio: break
-    return cont
+    if lista.is_empty():
+        return 0
 
-def executar():
-    print("Exercício 16")
-    fc = FilaCircular()
-    for x in input("Lista Circular: ").split(): fc.inserir(x)
-    print(f"Tamanho: {contar_circular(fc)}")
+    primeiro_no = lista._tail._next
+    atual = first_node = primeiro_no
+    contador = 0
+    
+    while True:
+        contador += 1
+        atual = atual._next
+
+        if atual is primeiro_no:
+            break
+            
+    return contador
+
+def testar_exercicio_16():
+    circ = CircularQueue()
+    circ.enqueue(10)
+    circ.enqueue(20)
+    circ.enqueue(30)
+    circ.enqueue(40)
+    
+    print(f"Contagem detectada: {contar_circular(circ)}")
+
+if __name__ == "__main__":
+    testar_exercicio_16()
