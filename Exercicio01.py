@@ -1,83 +1,83 @@
-class Pilha:
+class ArrayStack:
     def __init__(self):
         self._dados = []
 
     def __len__(self):
         return len(self._dados)
 
-    def vazia(self):
-        return not self._dados
+    def is_empty(self):
+        return len(self._dados) == 0
 
-    def empilhar(self, item):
-        self._dados.append(item)
+    def push(self, elemento):
+        self._dados.append(elemento)
 
-    def desempilhar(self):
-        if self.vazia():
+    def pop(self):
+        if self.is_empty():
             print("pilha vazia")
         return self._dados.pop()
 
-    def topo(self):
-        if self.vazia():
+    def top(self):
+        if self.is_empty():
             print("pilha vazia")
         return self._dados[-1]
 
 
-class Fila:
+class ArrayQueue:
     def __init__(self):
         self._dados = []
 
     def __len__(self):
         return len(self._dados)
 
-    def vazia(self):
-        return not self._dados
+    def is_empty(self):
+        return len(self._dados) == 0
 
-    def inserir(self, item):
-        self._dados.append(item)
+    def enqueue(self, elemento):
+        self._dados.append(elemento)
 
-    def remover(self):
-        if self.vazia():
+    def dequeue(self):
+        if self.is_empty():
             print("fila vazia")
-        return self._dados.pop(0)
+        return self._dados.pop(0) 
 
-    def primeiro(self):
-        if self.vazia():
+    def first(self):
+        if self.is_empty():
             print("fila vazia")
         return self._dados[0]
 
 
-class Deque:
+class ArrayDeque:
     def __init__(self):
         self._dados = []
 
     def __len__(self):
         return len(self._dados)
 
-    def vazia(self):
-        return not self._dados
+    def is_empty(self):
+        return len(self._dados) == 0
 
-    def inserir_inicio(self, item):
-        self._dados.insert(0, item)
+    def add_first(self, elemento):
+        self._dados.insert(0, elemento)
 
-    def inserir_final(self, item):
-        self._dados.append(item)
+    def add_last(self, elemento):
+        self._dados.append(elemento)
 
-    def remover_inicio(self):
-        if self.vazia():
+    def delete_first(self):
+        if self.is_empty():
             print("deque vazio")
         return self._dados.pop(0)
 
-    def remover_final(self):
-        if self.vazia():
+    def delete_last(self):
+        if self.is_empty():
             print("deque vazio")
         return self._dados.pop()
 
-    def primeiro(self):
-        if self.vazia():
+    def first(self):
+        if self.is_empty():
             print("deque vazio")
         return self._dados[0]
 
-    def ultimo(self):
-        if self.vazia():
+    def last(self):
+        if self.is_empty():
             print("deque vazio")
         return self._dados[-1]
